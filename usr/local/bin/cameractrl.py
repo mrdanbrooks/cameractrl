@@ -68,9 +68,9 @@ class MochadListener(LineReceiver):
         # Execute camera command. Commands with arguments need to be put into a list
         cmd = self.__motioncommands[input_cmd]
         cmd = cmd.split() if ' ' in cmd else cmd
+        log("executing '%s'"  % self.__motioncommands[input_cmd], syslog.LOG_DEBUG)
         try:
             ret = subprocess.call(cmd, stdout=open("/dev/null", "w"))
-            log("executing '%s'"  % self.__motioncommands[input_cmd], syslog.LOG_DEBUG)
         except Exception:
             log("Command Failed", syslog.LOG_ALERT)
 
@@ -119,4 +119,4 @@ if __name__ == "__main__":
     connection_manager = ConnectionManager(listener)
     reactor.connectTCP(args.host, args.port, connection_manager)
     reactor.run()
-
+    log("Shutting down")
