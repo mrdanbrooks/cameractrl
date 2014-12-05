@@ -54,7 +54,7 @@ class MochadListener(LineReceiver):
             return
 
         # Ignore if this is not the input code we are looking for
-        if not self.__inputcode == input_code:
+        if not self.__inputcode.lower() == input_code.lower():
             log("wrong device, ignoring.", syslog.LOG_INFO)
             return
 
@@ -105,10 +105,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser("cameractrl", description="Motion Camera Control")
     parser.add_argument('--host', type=str, required=True, help="ip address of mochad server")
     parser.add_argument('--port', type=int, default=1099, help="mochad listening port")
-    parser.add_argument('--inputcode', type=str, default="C1", help="mochad device code to listen to for input signal")
+    parser.add_argument('--inputcode', type=str, default="A1", help="mochad device code to listen to for input signal")
     parser.add_argument('--motion-start-cmd', default='/etc/init.d/motion start', help="motion start command")
     parser.add_argument('--motion-stop-cmd', default='/etc/init.d/motion stop', help="motion stop command")
-    parser.add_argument('--camera-light-code', default='m5', help="X10 device code for camera infrared light")
+    parser.add_argument('--camera-light-code', default='a2', help="X10 device code for camera infrared light")
     args = parser.parse_args()
 
     listener = MochadListener(args.inputcode, 
