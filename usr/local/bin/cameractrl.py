@@ -55,7 +55,7 @@ class MochadListener(LineReceiver):
 
         # Ignore if this is not the input code we are looking for
         if not self.__inputcode.lower() == input_code.lower():
-            log("wrong device, ignoring.", syslog.LOG_INFO)
+#             log("wrong device, ignoring.", syslog.LOG_INFO)
             return
 
         # Ignore if we do not understand the command
