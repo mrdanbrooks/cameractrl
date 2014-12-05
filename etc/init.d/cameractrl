@@ -10,7 +10,8 @@
 # Description:      cameractrl
 ### END INIT INFO
 
-DAEMON=/usr/local/bin/cameractrl.py --host 127.0.0.1 --inputcode=a1 --camera-light-code=a2
+DAEMON=/usr/local/bin/cameractrl.py
+DAEMON_ARGS="--host=127.0.0.1 --inputcode=a1 --camera-light-code=a2"
 DAEMON_NAME=cameractrl       # The name of this file
 PIDFILE=/var/run/$DAEMON_NAME.pid
 DAEMON_USER=root
@@ -18,13 +19,13 @@ DAEMON_USER=root
 . /lib/lsb/init-functions
 
 do_start () {
-    log_daemon_msg "Starting lumos.py"
-    start-stop-daemon --start --background --quiet --pidfile $PIDFILE --make-pidfile --user $DAEMON_USER --chuid $DAEMON_USER --exec $DAEMON
+    log_daemon_msg "Starting $DAEMON_NAME"
+    start-stop-daemon --start --background --quiet --pidfile $PIDFILE --make-pidfile --user $DAEMON_USER --chuid $DAEMON_USER --exec $DAEMON -- $DAEMON_ARGS
     log_end_msg $?
 }
 
 do_stop () {
-    log_daemon_msg "Stopping lumos.py"
+    log_daemon_msg "Stopping $DAEMON_NAME"
     start-stop-daemon --stop --pidfile $PIDFILE --retry 10
     log_end_msg $?
 }
