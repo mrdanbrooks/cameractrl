@@ -17,7 +17,7 @@ sudo apt-get install python-twisted
 Install cameractrl.py
 
 ```
-sudo cp cameractrl.py /usr/local/bin/cameractrl.py
+sudo cp /usr/local/bin/cameractrl.py /usr/local/bin/cameractrl.py
 sudo chmod 755 /usr/local/bin/cameractrl.py
 ```
 
