@@ -26,8 +26,6 @@ from twisted.internet.protocol import ReconnectingClientFactory
 from twisted.protocols.basic import LineReceiver
 
 
-#TODO: Turn on and off security light
-
 def log(msg, priority=syslog.LOG_INFO):
     """ Prints a message and also saves it to the syslog """
     print msg
