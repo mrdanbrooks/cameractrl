@@ -73,6 +73,7 @@ class MochadListener(LineReceiver):
             ret = subprocess.call(cmd, stdout=open("/dev/null", "w"))
         except Exception:
             log("Command Failed", syslog.LOG_ALERT)
+            return
 
         # Execute Light Command
         cmd = "rf %s %s" % (self.__lightcode, input_cmd.lower())
